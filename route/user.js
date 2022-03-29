@@ -3,8 +3,21 @@ const router = express.Router()
 const UserController = require('../controller/UserController');
 
 router
-    .route('/All')
+    .route('/')
     .get(UserController.all)
+
+router
+    .route('/create')
+    .post(UserController.create)  
+    
+    
+ router
+    .route('/update/:id')
+    .post(UserController.update) 
+    
+ router
+    .route('/delete/:id')
+    .delete(UserController.delete)      
 
 
 
