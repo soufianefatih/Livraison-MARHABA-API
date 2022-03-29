@@ -6,7 +6,12 @@ const CategoryController = require('../controller/CategoryController');
 
 router
     .route('/create')
-    .post(CategoryController.create)  
+    .post(CategoryController.create) 
+    
+    
+router
+    .route('/update/:id')
+    .post(CategoryController.update)      
     
         
 

@@ -35,7 +35,7 @@ const categoryRoutes = require("./route/category");
 //* Register Our Routes
   app.use("/api/marhaba/", authRoutes);
   app.use("/api/marhaba/users",AuthMiddleware.virifylogin, userRoutes);
-  app.use("/api/marhaba/category",AuthMiddleware.virifylogin, categoryRoutes);
+  app.use("/api/marhaba/category",AuthMiddleware.virifylogin,AuthMiddleware.UserRole('admin'), categoryRoutes);
 
 
 

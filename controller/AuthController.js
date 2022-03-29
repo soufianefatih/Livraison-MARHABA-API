@@ -41,7 +41,7 @@ exports.register = async (req, res) => {
         if (err) {
           res.json({ message: "validate not correct" });
         }
-        res.send({token });
+        res.send({token, user});
       });
   
       //  res.json({message: 'login '});
