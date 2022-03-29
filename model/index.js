@@ -31,7 +31,7 @@ Product.belongsTo(Category ,
 
 
 // Create table of model 
-db.sync({ force: false }).then(
+db.sync({ force: false}).then(
     () => {
         console.log('Table Created !')
     }

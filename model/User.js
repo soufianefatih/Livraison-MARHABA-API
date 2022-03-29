@@ -19,7 +19,7 @@ module.exports = (db, type) => {
             allowNull: false,
         },
         role: {
-            type: type.INTEGER,
+            type: type.STRING,
         },
         status: {
             type: type.INTEGER,

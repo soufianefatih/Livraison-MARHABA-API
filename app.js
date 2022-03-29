@@ -17,6 +17,9 @@ db
         console.error('Unable to connect to the database:', err);
     });
 
+// virification token / login
+const AuthMiddleware = require('./middleware/Authmiddleware');
+
 
     //* the will let us get data the data form post
     app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,9 +27,13 @@ db
 
 //* Require Routes
 const authRoutes = require("./route/auth");
+const userRoutes = require("./route/user");
+
 
 //* Register Our Routes
   app.use("/api/marhaba/", authRoutes);
+  app.use("/api/marhaba/users",AuthMiddleware.virifylogin, userRoutes);
+
 
   // force: true 
 
