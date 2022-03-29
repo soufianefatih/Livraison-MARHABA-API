@@ -39,6 +39,7 @@ db.sync({ force: false }).then(
 
 
 
+
 module.exports = {
    
         User, Product,Category

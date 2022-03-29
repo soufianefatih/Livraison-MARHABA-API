@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express ();
+const bodyParser = require("body-parser");
 require('./model/index');
 
 
+//  connection database 
 
 const db = require('./config/database')
 
@@ -15,15 +17,18 @@ db
         console.error('Unable to connect to the database:', err);
     });
 
-// const db = require('./config/config');
 
+    //* the will let us get data the data form post
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.json());
 
-// force: true 
-// db.sequelize.sync({alter: true}).then(()=>{
-//     console.log('resync {force: true}');
-// })
+//* Require Routes
+const authRoutes = require("./route/auth");
 
+//* Register Our Routes
+  app.use("/api/marhaba/", authRoutes);
 
+  // force: true 
 
 
 const PORT = process.env.PORT || 5500;

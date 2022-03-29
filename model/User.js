@@ -5,6 +5,11 @@ module.exports = (db, type) => {
             autoIncrement: true,
             primaryKey: true,
         },
+
+        name: {
+            type: type.STRING,
+            allowNull: false,
+        },
         email: {
             type: type.STRING,
             allowNull: false,
