@@ -47,3 +47,14 @@ exports.delete = async (req, res) => {
         res.status(400).send(error);
     }
 }
+
+
+exports.ById = async (req, res) => {
+    try {
+        const users = await User.findByPk(req.params.id);
+    
+        res.json(users);
+      } catch (error) {
+        res.status(400).send(error);
+      }
+};

@@ -17,7 +17,11 @@ router
     
  router
     .route('/delete/:id')
-    .delete(UserController.delete)      
+    .delete(UserController.delete)
+    
+ router
+    .route('/:id')
+    .get(UserController.ById)       
 
 
 
