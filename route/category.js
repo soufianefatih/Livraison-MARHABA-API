@@ -11,7 +11,20 @@ router
     
 router
     .route('/update/:id')
-    .post(CategoryController.update)      
+    .post(CategoryController.update)   
+    
+ router
+    .route('/')
+    .get(CategoryController.all)
+
+ router
+    .route('/delete/:id')
+    .delete(CategoryController.delete) 
+    
+    
+ router
+    .route('/:id')
+    .get(CategoryController.ById)      
     
         
 
