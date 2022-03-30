@@ -10,5 +10,13 @@ router
 
  router
     .route('/:id')
-    .get(ProductController.ById)     
+    .get(ProductController.ById) 
+    
+ router
+    .route('/:id')
+    .get(ProductController.ById) 
+
+ router
+    .route('/')
+    .get(ProductController.all) 
 module.exports = router;
