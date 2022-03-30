@@ -22,5 +22,9 @@ router
 
  router
     .route('/delete/:id')
-    .delete(ProductController.delete)     
+    .delete(ProductController.delete) 
+    
+ router
+    .route('/update/:id')
+    .post(ProductController.update)   
 module.exports = router;

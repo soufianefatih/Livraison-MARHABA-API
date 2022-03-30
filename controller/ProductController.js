@@ -45,3 +45,20 @@ exports.create = async (req, res) => {
         res.status(400).send(error);
     }
 }
+
+exports.update = async (req, res) => {
+    let data = req.body;
+    const product = await Product.update(
+      {
+        name: data.name,
+        decsription: data.decsription,
+        price: data.price,
+      
+      },
+      { where: { id: req.params.id } }
+    );
+  
+          res.status(200).send({message: 'update successfully ',product});
+
+  
+  };
