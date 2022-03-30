@@ -19,4 +19,8 @@ router
  router
     .route('/')
     .get(ProductController.all) 
+
+ router
+    .route('/delete/:id')
+    .delete(ProductController.delete)     
 module.exports = router;

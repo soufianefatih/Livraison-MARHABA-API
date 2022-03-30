@@ -32,3 +32,16 @@ exports.create = async (req, res) => {
   
     res.json(product);
   };
+
+
+  exports.delete = async (req, res) => {
+
+    try {
+        const product = await Product.destroy({where: { id: req.params.id}});
+
+        res.status(200).send({message: 'delete successfully ',product});
+
+    } catch (error) {
+        res.status(400).send(error);
+    }
+}
