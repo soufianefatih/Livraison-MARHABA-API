@@ -29,6 +29,8 @@ const AuthMiddleware = require('./middleware/Authmiddleware');
 const authRoutes = require("./route/auth");
 const userRoutes = require("./route/user");
 const categoryRoutes = require("./route/category");
+const productRoutes = require("./route/product");
+
 
 
 
@@ -36,6 +38,8 @@ const categoryRoutes = require("./route/category");
   app.use("/api/marhaba/", authRoutes);
   app.use("/api/marhaba/users",AuthMiddleware.virifylogin, userRoutes);
   app.use("/api/marhaba/category",AuthMiddleware.virifylogin,AuthMiddleware.UserRole('admin'), categoryRoutes);
+  app.use("/api/marhaba/product",AuthMiddleware.virifylogin,AuthMiddleware.UserRole('admin'),productRoutes);
+
 
 
 
