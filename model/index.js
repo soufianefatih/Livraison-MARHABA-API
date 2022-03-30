@@ -5,6 +5,8 @@ const UserModel = require("./User");
 const ProductModel = require("./Product");
 const CategoryModel = require("./Category");
 const CommandModel = require("./Command");
+const CommandProductModel = require("./CommandProduct");
+
 
 
 // Gen Model in database
@@ -12,6 +14,8 @@ const User = UserModel(db, Sequelize);
 const Product = ProductModel(db, Sequelize);
 const Category = CategoryModel(db, Sequelize);
 const Command = CommandModel(db, Sequelize);
+const CommandProduct = CommandProductModel(db, Sequelize);
+
 
 
 // les relaction
@@ -51,7 +55,19 @@ Command.belongsTo(
      { as: 'delivery', foreignKey: 'delivery_id' }
      );
 
+// relation between product //  commanede
 
+Command.belongsToMany(Product, {
+    through: CommandProduct,
+    as: "products",
+    foreignKey: 'product_id'
+});
+
+Product.belongsToMany(Command, {
+    through: CommandProduct,
+    as: "commands",
+    foreignKey: 'command_id'
+});
 
 
 
