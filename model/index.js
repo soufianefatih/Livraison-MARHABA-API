@@ -42,14 +42,16 @@ User.hasMany(
     { foreignKey: 'client_id' }
     );
 
+ Command.belongsTo(
+      User,
+       { as: 'client', foreignKey: 'client_id' }
+      );
+
 User.hasMany(
     Command,
      { foreignKey: 'delivery_id' }
      );
-Command.belongsTo(
-    User,
-     { as: 'client', foreignKey: 'client_id' }
-    );
+
 Command.belongsTo(
     User,
      { as: 'delivery', foreignKey: 'delivery_id' }
@@ -80,4 +82,6 @@ module.exports = {
   User,
   Product,
   Category,
+  Command,
+  CommandProduct,
 };
