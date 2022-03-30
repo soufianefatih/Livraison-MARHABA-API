@@ -26,6 +26,9 @@ router
     .route('/:id')
     .get(CategoryController.ById)      
     
+    router
+    .route('/products/:id')
+    .get(CategoryController.product)       
         
 
 
