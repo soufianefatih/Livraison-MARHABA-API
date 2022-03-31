@@ -10,6 +10,7 @@ exports.create = async (req, res) => {
     total: 0,
     status: 0,
     user: req.user.id,
+    client_id: data.client_id,
   });
 
   data.command_products.forEach(async (product) => {
@@ -32,4 +33,21 @@ exports.create = async (req, res) => {
   res.json({
     command: command,
   });
+};
+
+exports.all = async (req, res) => {
+  const command = await Command.findAll();
+
+  res.json(command);
+};
+
+
+exports.ById = async (req, res) => {
+  try {
+      const command = await Command.findByPk(req.params.id);
+  
+      res.json(command);
+    } catch (error) {
+      res.status(400).send(error);
+    }
 };
