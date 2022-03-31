@@ -10,7 +10,7 @@ exports.register = async (req, res) => {
     email: data.email,
     password: data.password,
     status: 0,
-    role: data.role == "livreur" ? "livreur" : "client",
+    role: data.role == "client" ? "client" : "livreur" ,
   });
 
   try {
@@ -22,7 +22,7 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   const user = await User.findOne({
-    email: req.body.email,
+  where :{email: req.body.email}
   });
 
   // check email is exit
