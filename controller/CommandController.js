@@ -74,7 +74,7 @@ exports.command = async (req, res) => {
   const id = req.params.id;
   try {
   const command = await Command.findOne({
-    include:[client,products] ,
+    include:['client','products'] ,
     where: { id: id },
   });
   res.json(command.toJSON());
