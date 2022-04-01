@@ -9,8 +9,8 @@ exports.create = async (req, res) => {
     phone: data.phone,
     total: 0,
     status: 0,
-    user: req.user.id,
-    client_id: data.client_id,
+    client_id: req.user.id ?? 1,
+    // client_id: data.client_id,
   });
 
   data.command_products.forEach(async (product) => {
@@ -51,19 +51,6 @@ exports.ById = async (req, res) => {
   }
 };
 
-exports.delete = async (req, res) => {
-  let data = req.body;
-  const booking = await Booking.findById(req.params.id);
-  await booking.populate("bookingroom");
-
-  booking.bookingroom.forEach(async (room) => {
-    await BookingRoom.findByIdAndDelete(room.id);
-  });
-
-  await Booking.findByIdAndDelete(req.params.id);
-
-  res.json(booking);
-};
 
 exports.delete = async (req, res) => {
   // let data = req.body;
@@ -71,12 +58,7 @@ exports.delete = async (req, res) => {
 
   const command = await Command.findByPk(req.params.id);
   await Command.findOne({
-    include: [
-      {
-        model: CommandProduct,
-        as: "commandproducts",
-      },
-    ],
+    include: "products",
     where: { id: id },
   });
   command.commandproducts.forEach(async (product) => {
@@ -90,13 +72,13 @@ exports.delete = async (req, res) => {
 
 exports.command = async (req, res) => {
   const id = req.params.id;
-  // try {
+  try {
   const command = await Command.findOne({
-    include: "products",
+    include:[client,products] ,
     where: { id: id },
   });
   res.json(command.toJSON());
-  // } catch (error) {
-  //   res.status(400).json(error);
-  // }
+  } catch (error) {
+    res.status(400).json(error);
+  }
 };

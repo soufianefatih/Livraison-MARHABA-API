@@ -10,7 +10,7 @@ exports.register = async (req, res) => {
     email: data.email,
     password: data.password,
     status: 0,
-    role: data.role == "client" ? "client" : "livreur" ,
+    role: data.role == "client" ? "client" : "livreur",
   });
 
   try {
@@ -22,7 +22,7 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   const user = await User.findOne({
-  where :{email: req.body.email}
+    where: { email: req.body.email },
   });
 
   // check email is exit
@@ -30,7 +30,7 @@ exports.login = async (req, res) => {
     res.status(400).json({ message: "user is not found" });
   } else {
     jwt.sign(
-      { _id: user._id, name: user.name, email: user.email, role: user.role },
+      { id: user.id, name: user.name, email: user.email, role: user.role },
       process.env.TOKEN_SECRET,
       (err, token) => {
         if (err) {
@@ -39,7 +39,7 @@ exports.login = async (req, res) => {
         res.send({ token, user });
       }
     );
-        
+
     //  res.json({message: 'login '});
   }
 };
