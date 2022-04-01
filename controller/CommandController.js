@@ -52,23 +52,7 @@ exports.ById = async (req, res) => {
 };
 
 
-exports.delete = async (req, res) => {
-  // let data = req.body;
-  const id = req.params.id;
 
-  const command = await Command.findByPk(req.params.id);
-  await Command.findOne({
-    include: "products",
-    where: { id: id },
-  });
-  command.commandproducts.forEach(async (product) => {
-    await CommandProduct.destroy(product.product_id);
-  });
-
-  await Command.destroy({ where: { id: req.params.id } });
-
-  res.status(200).send({ message: "delete successfully ", command });
-};
 
 exports.command = async (req, res) => {
   const id = req.params.id;

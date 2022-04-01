@@ -16,10 +16,7 @@ router
     .route('/:id')
     .get(CommandController.ById)
  
- router
-    .route('/delete/:id')
-    .delete(CommandController.delete) 
-    
+
  router
     .route('/commandproducts/:id')
     .get(CommandController.command)  
