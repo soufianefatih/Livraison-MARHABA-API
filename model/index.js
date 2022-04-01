@@ -44,13 +44,13 @@ Command.belongsTo(User, { as: "delivery", foreignKey: "delivery_id" });
 
 Product.belongsToMany(Command, {
   through: CommandProduct,
-  as: "products",
+  as: "commands",
   foreignKey: "product_id",
 });
 
 Command.belongsToMany(Product, {
   through: CommandProduct,
-  as: "commands",
+  as: "products",
   foreignKey: "command_id",
 });
 

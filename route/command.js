@@ -14,5 +14,14 @@ router
 
 router
     .route('/:id')
-    .get(CommandController.ById)     
+    .get(CommandController.ById)
+ 
+ router
+    .route('/delete/:id')
+    .delete(CommandController.delete) 
+    
+ router
+    .route('/commandproducts/:id')
+    .get(CommandController.command)  
+         
 module.exports = router;
