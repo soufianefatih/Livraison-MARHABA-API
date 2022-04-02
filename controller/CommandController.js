@@ -3,11 +3,11 @@ const { Command, CommandProduct } = require("../model");
 exports.create = async (req, res) => {
   let data = req.body;
   console.log(data);
-
+  let total = 0;
   const command = await Command.create({
     address: data.address,
     phone: data.phone,
-    total: 0,
+    total:total,
     status: 0,
     client_id: req.user.id ?? 1,
     // client_id: data.client_id,
@@ -25,6 +25,19 @@ exports.create = async (req, res) => {
         command_id: command.id,
         product_id: product.id,
       });
+
+      total +=  product.qty * product.price
+
+            await Command.update(
+        {
+            'total': total,
+        },
+        {
+            where: {
+                id: command.id
+            }
+        }
+    )
     } catch (error) {
       console.log("error : ", error);
     }
