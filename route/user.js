@@ -1,27 +1,28 @@
 const express = require('express')
 const router = express.Router()
 const UserController = require('../controller/UserController');
+const AuthMiddleware = require('./../middleware/Authmiddleware');
 
 router
     .route('/')
-    .get(UserController.all)
+    .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('admin'),UserController.all)
 
 router
     .route('/create')
-    .post(UserController.create)  
+    .post(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('admin'),UserController.create)  
     
     
  router
     .route('/update/:id')
-    .post(UserController.update) 
+    .post(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('admin'),UserController.update) 
     
  router
     .route('/delete/:id')
-    .delete(UserController.delete)
+    .delete(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('admin'),UserController.delete)
     
  router
     .route('/:id')
-    .get(UserController.ById)       
+    .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('admin'),UserController.ById)       
 
 
 
