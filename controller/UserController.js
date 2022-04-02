@@ -75,13 +75,4 @@ exports.status_delivery = async (req, res) => {
 };
 
 
-// exports.delivry = async (req, res) => {
-//   const delivry = await User.findAll({
-
-//     where :{role : 'livreur'}
-//   });
-
-//   res.json(delivry);
-// };
-
 
