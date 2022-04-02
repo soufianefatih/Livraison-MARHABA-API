@@ -1,7 +1,12 @@
 const { User } = require("../model");
+const Actions = require("../classes/Action");
+
 
 exports.all = async (req, res) => {
-  const users = await User.findAll();
+  let filters = req.query.filters || {};
+
+  const users = await Actions.setModel(User).filters(filters).get();
+  // const users = await User.findAll();
 
   res.json(users);
 };
