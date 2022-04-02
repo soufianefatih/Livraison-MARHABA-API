@@ -8,20 +8,20 @@ const AuthMiddleware = require('./../middleware/Authmiddleware');
 
 router
     .route('/create')
-    .post(CommandController.create) 
+    .post(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('client'),CommandController.create) 
 
 router
     .route('/')
-    .get(CommandController.all) 
+    .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole(['client','admin','livreur']),CommandController.all) 
 
 router
     .route('/:id')
-    .get(CommandController.ById)
+    .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole(['client','admin','livreur']),CommandController.ById)
  
 
  router
     .route('/commandproducts/:id')
-    .get(CommandController.command)  
+    .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole(['client','admin','livreur']),CommandController.command)  
 
    
          
