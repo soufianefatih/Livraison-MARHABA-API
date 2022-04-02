@@ -2,13 +2,14 @@ const express = require('express')
 const router = express.Router()
 const CategoryController = require('../controller/CategoryController');
 const AuthMiddleware = require('./../middleware/Authmiddleware');
-
+const multer = require('multer')
+const upload = multer();
 
 
 
 router
     .route('/create')
-    .post(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('admin'),CategoryController.create) 
+    .post(upload.fields([{ name: 'image', maxCount: 1}]),AuthMiddleware.virifylogin,AuthMiddleware.UserRole('admin'),CategoryController.create) 
     
     
 router
