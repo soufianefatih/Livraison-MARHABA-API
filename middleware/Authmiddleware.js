@@ -16,12 +16,22 @@ exports.virifylogin =  function (req, res, next) {
 };
 
 
-exports.UserRole = function(role){
-    return async (req, res, next) => {
-        if (req.user.role == role) {
-            next();
-        }else{
-            res.status('401').json({ message: 'Role is not autohrized' })
+// exports.UserRole = function(role){
+    
+//   return async (req, res, next) => {
+//         if (req.user.role == role) {
+//             next();
+//         }else{
+//             res.status('401').json({ message: 'Role is not autohrized' })
+//         }
+//     }
+//   }
+
+  exports.UserRole = function(role){
+    return (req, res, next) => {
+        if (!role.includes(req.user.role)) {
+            res.status(401).json({ message: 'you dont have access to this route!' })
         }
+        next();    
     }
-  }
+}  
