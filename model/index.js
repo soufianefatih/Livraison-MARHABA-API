@@ -55,7 +55,7 @@ Command.belongsToMany(Product, {
 });
 
 // Create table of model
-db.sync({ force: false }).then(() => {
+db.sync({ force: true }).then(() => {
   console.log("Table Created !");
 });
 

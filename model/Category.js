@@ -8,6 +8,10 @@ module.exports = (db, type) => {
         name: {
             type: type.STRING,
             allowNull: false,
+        },
+        image: {
+            type: type.STRING,
+            allowNull: false,
         }
     });
 };
