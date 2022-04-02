@@ -39,7 +39,7 @@ const commandtRoutes = require("./route/command");
 //* Register Our Routes
   app.use("/api/marhaba/", authRoutes);
   app.use("/api/marhaba/users",AuthMiddleware.virifylogin, userRoutes);
-  app.use("/api/marhaba/category",AuthMiddleware.virifylogin,AuthMiddleware.UserRole('admin'), categoryRoutes);
+  app.use("/api/marhaba/category",categoryRoutes);
   app.use("/api/marhaba/product",productRoutes);
   app.use("/api/marhaba/command",commandtRoutes);
 
