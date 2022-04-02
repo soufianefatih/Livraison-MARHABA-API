@@ -1,9 +1,17 @@
 const { Category,Product } = require("../model");
+const fs = require('fs');
+
 
 exports.create = async (req, res) => {
+
+  let image = './upload/' + Math.floor(Math.random() * 1000000000000000) + '.png';
+  await fs.promises.writeFile(image, req.files.image[0].buffer)
+
+
     let data = req.body;
     const category = await Category.create({
       name: data.name,
+      image : image,
     
     });
     res.json(category);
