@@ -1,12 +1,21 @@
 const { User } = require("../model");
-const Actions = require("../classes/Action");
 
+
+
+exports.delivery = async (req, res) => {
+  
+  const users = await User.findAll({
+  
+        where:{role: 'livreur'}
+  
+  });
+
+  res.json(users);
+};
 
 exports.all = async (req, res) => {
-  let filters = req.query.filters || {};
-
-  const users = await Actions.setModel(User).filters(filters).get();
-  // const users = await User.findAll();
+ 
+  const users = await User.findAll();
 
   res.json(users);
 };

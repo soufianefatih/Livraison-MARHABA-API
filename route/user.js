@@ -6,6 +6,9 @@ const AuthMiddleware = require('./../middleware/Authmiddleware');
 router
     .route('/')
     .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('admin'),UserController.all)
+    router
+    .route('/delivery')
+    .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('admin'),UserController.delivery)
 
 router
     .route('/create')
