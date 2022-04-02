@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const CommandController = require('../controller/CommandController');
+const AuthMiddleware = require('./../middleware/Authmiddleware');
+
 
 
 
@@ -20,5 +22,7 @@ router
  router
     .route('/commandproducts/:id')
     .get(CommandController.command)  
+
+   
          
 module.exports = router;

@@ -49,7 +49,7 @@ exports.create = async (req, res) => {
 };
 
 exports.all = async (req, res) => {
-  const command = await Command.findAll();
+  const command = await Command.findAll({ include:['client','products']});
 
   res.json(command);
 };
@@ -79,3 +79,7 @@ exports.command = async (req, res) => {
     res.status(400).json(error);
   }
 };
+
+
+
+
