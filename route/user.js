@@ -22,7 +22,16 @@ router
     
  router
     .route('/:id')
-    .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('admin'),UserController.ById)       
+    .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('admin'),UserController.ById) 
+
+
+ router
+    .route('/status/:id')
+    .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('admin'),UserController.status_delivery)   
+ 
+    //  router
+   //  .route('/delivry')
+   //  .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('admin'),UserController.delivry)         
 
 
 

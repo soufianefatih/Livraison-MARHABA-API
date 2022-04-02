@@ -58,3 +58,30 @@ exports.ById = async (req, res) => {
         res.status(400).send(error);
       }
 };
+
+exports.status_delivery = async (req, res) => {
+  const confirmer = await User.update(
+    {
+      status: 1
+  },
+  {
+      where: {
+          id: req.params.id
+      }
+  }
+  );
+  res.status(200).send({message: 'confirmation successfully ',confirmer});
+
+};
+
+
+// exports.delivry = async (req, res) => {
+//   const delivry = await User.findAll({
+
+//     where :{role : 'livreur'}
+//   });
+
+//   res.json(delivry);
+// };
+
+
