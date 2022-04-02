@@ -10,7 +10,7 @@ exports.register = async (req, res) => {
     email: data.email,
     password: data.password,
     status: 0,
-    role: data.role == "client" ? "client" : "livreur",
+    role: data.role == "livreur" ? "livreur" : "client",
   });
 
   try {
