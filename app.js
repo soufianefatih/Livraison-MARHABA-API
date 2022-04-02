@@ -11,19 +11,15 @@ const db = require('./config/database')
 db
     .authenticate()
     .then(() => {
-        console.log('Connection has been established successfully.');
+        console.log('Connection successfully.');
     })
     .catch(err => {
         console.error('Unable to connect to the database:', err);
     });
 
-// virification token / login
-const AuthMiddleware = require('./middleware/Authmiddleware');
-
-
-    //* the will let us get data the data form post
-    app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(bodyParser.json());
+  //* the will let us get data the data form post
+ app.use(bodyParser.urlencoded({ extended: true }));
+ app.use(bodyParser.json());
 
 //* Require Routes
 const authRoutes = require("./route/auth");
@@ -31,10 +27,6 @@ const userRoutes = require("./route/user");
 const categoryRoutes = require("./route/category");
 const productRoutes = require("./route/product");
 const commandtRoutes = require("./route/command");
-
-
-
-
 
 //* Register Our Routes
   app.use("/api/marhaba/", authRoutes);
@@ -47,7 +39,6 @@ const commandtRoutes = require("./route/command");
 
 
 
-  // force: true 
 
 
 const PORT = process.env.PORT || 5500;
