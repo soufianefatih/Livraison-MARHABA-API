@@ -10,9 +10,14 @@ router
     .route('/create')
     .post(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('client'),CommandController.create) 
 
+
+ router
+    .route('/update/:id')
+    .post(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('client'),CommandController.update)     
+
 router
     .route('/')
-    .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole(['client','admin','livreur']),CommandController.all) 
+    .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole(["client"]),CommandController.all) 
 
 router
     .route('/:id')

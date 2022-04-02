@@ -81,5 +81,40 @@ exports.command = async (req, res) => {
 };
 
 
+// exports.update = async (req, res) => {
+//   let data = req.body;
+
+//   try {
+//       const command = await Command.update(
+//           {
+//               address: data.address,
+//               phone: data.phone,
+//           },
+//           {
+//               where: {
+//                   id: req.params.id
+//               }
+//           }
+//       )
+
+//       res.json(command.toJson());
+//   } catch (error) {
+//     res.status(400).json(error);
+//   }
+// }
 
 
+exports.update = async (req, res) => {
+  let data = req.body;
+  const command = await Command.update(
+    {
+      address: data.address,
+      phone: data.phone,    
+    },
+    { where: { id: req.params.id } }
+  );
+
+        res.status(200).send({message: 'update successfully ',command});
+
+
+};
