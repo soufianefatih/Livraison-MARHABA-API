@@ -10,13 +10,10 @@ exports.create = async (req, res) => {
     total:total,
     status: 0,
     client_id: req.user.id ?? 1,
-    // client_id: data.client_id,
   });
 
   data.command_products.forEach(async (product) => {
-    console.log("-----------srt------------");
-    // console.log("product : ", product);
-    // console.log("command : ", command.id);
+
     try {
       await CommandProduct.create({
         quantity: product.qty,
@@ -79,29 +76,6 @@ exports.command = async (req, res) => {
     res.status(400).json(error);
   }
 };
-
-
-// exports.update = async (req, res) => {
-//   let data = req.body;
-
-//   try {
-//       const command = await Command.update(
-//           {
-//               address: data.address,
-//               phone: data.phone,
-//           },
-//           {
-//               where: {
-//                   id: req.params.id
-//               }
-//           }
-//       )
-
-//       res.json(command.toJson());
-//   } catch (error) {
-//     res.status(400).json(error);
-//   }
-// }
 
 
 exports.update = async (req, res) => {
