@@ -9,6 +9,11 @@ class Actions {
         return this;
     }
 
+    static sorts(sorts) {
+        this.data.sort(sorts);
+        return this;
+    }
+
     static get(){
         return this.data;
     }
