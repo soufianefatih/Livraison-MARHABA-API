@@ -1,6 +1,7 @@
 const { Product } = require("../model");
 const fs = require('fs');
 
+/* -------create product by admin ----- */
 
 exports.create = async (req, res) => {
 
@@ -18,6 +19,9 @@ exports.create = async (req, res) => {
     res.json(product);
   };
 
+/* -------get one product ----- */
+
+
   exports.ById = async (req, res) => {
     try {
         const product = await Product.findByPk(req.params.id);
@@ -27,12 +31,17 @@ exports.create = async (req, res) => {
       }
   };
 
+/* -------get all products ----- */
+
+
   exports.all = async (req, res) => {
     const product = await Product.findAll();
   
     res.json(product);
   };
 
+
+/* -------delete product by admin ----- */
 
   exports.delete = async (req, res) => {
 
@@ -45,6 +54,8 @@ exports.create = async (req, res) => {
         res.status(400).send(error);
     }
 }
+
+/* -------update product by admin ----- */
 
 exports.update = async (req, res) => {
     let data = req.body;
