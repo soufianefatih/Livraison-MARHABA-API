@@ -28,7 +28,7 @@ router
    
  router
     .route('/:id/delivery/:deliveryid')
-    .get(CommandController.deliveryConfirm)
+    .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('livreur'),CommandController.deliveryConfirm)
    
          
 module.exports = router;

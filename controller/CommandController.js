@@ -17,8 +17,8 @@ exports.create = async (req, res) => {
   });
 
   data.command_products.forEach(async (product) => {
-
     try {
+  
       await CommandProduct.create({
         quantity: product.qty,
         price: product.price,
@@ -114,7 +114,8 @@ exports.deliveryConfirm = async (req, res) => {
           },
           {
               where: {
-                  id: req.params.id
+                  id: req.params.id,
+                  status : 1
               }
           }
       )
