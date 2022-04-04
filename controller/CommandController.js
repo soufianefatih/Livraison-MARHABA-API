@@ -10,6 +10,7 @@ exports.create = async (req, res) => {
     total:total,
     status: 0,
     client_id: req.user.id ?? 1,
+     
   });
 
   data.command_products.forEach(async (product) => {

@@ -16,10 +16,11 @@ exports.virifylogin =  function (req, res, next) {
 };
 
 
-// exports.UserRole = function(role){
-    
+// exports.dileveryStatus = function(status){
+ 
 //   return async (req, res, next) => {
-//         if (req.user.role == role) {
+//       delivery_id =  req.user.status ;
+//         if (delivery_id.status == status == 1) {
 //             next();
 //         }else{
 //             res.status('401').json({ message: 'Role is not autohrized' })

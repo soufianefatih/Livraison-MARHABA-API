@@ -4,8 +4,6 @@ const CommandController = require('../controller/CommandController');
 const AuthMiddleware = require('./../middleware/Authmiddleware');
 
 
-
-
 router
     .route('/create')
     .post(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('client'),CommandController.create) 
@@ -17,7 +15,7 @@ router
 
 router
     .route('/')
-    .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole(["client"]),CommandController.all) 
+    .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole(['client','admin','livreur']),CommandController.all) 
 
 router
     .route('/:id')
