@@ -1,4 +1,5 @@
-const { Command, CommandProduct } = require("../model");
+const { status } = require("express/lib/response");
+const { Command, CommandProduct , User } = require("../model");
 
 
 /* -------create command by client----- */
@@ -107,8 +108,12 @@ exports.update = async (req, res) => {
 
 
 exports.deliveryConfirm = async (req, res) => {
-  try {
-      const command = await Command.update(
+  const user = await User.findOne({
+    where: { status: 1 },
+  });
+ 
+      if (user.status === 1) {
+        const command = await Command.update(
           {
               'delivery_id': req.params.deliveryid,
 
@@ -116,14 +121,21 @@ exports.deliveryConfirm = async (req, res) => {
           {
               where: {
                   id: req.params.id,
-                  // statu:s : '1'
 
               }
           }
-      )
-
+          )
+          console.log(req.params.deliveryid),
       res.status(200).send({message: 'confirm successfully ',command});
-    } catch (error) {
-      res.status(400).json(error);
-    }
+
+      } else{
+
+     
+        res.status(400).json('status is not confirm');
+      
+
+
+      }
+     
+
 }
