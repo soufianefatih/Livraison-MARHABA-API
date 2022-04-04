@@ -93,3 +93,24 @@ exports.update = async (req, res) => {
 
 
 };
+
+
+
+exports.deliveryConfirm = async (req, res) => {
+  try {
+      const command = await Command.update(
+          {
+              'delivery_id': req.params.userid,
+          },
+          {
+              where: {
+                  id: req.params.id
+              }
+          }
+      )
+
+      res.status(200).send({message: 'confirm successfully ',command});
+    } catch (error) {
+      res.status(400).json(error);
+    }
+}
