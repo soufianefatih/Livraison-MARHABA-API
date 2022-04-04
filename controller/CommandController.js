@@ -65,7 +65,7 @@ exports.ById = async (req, res) => {
 
 
 
-exports.command = async (req, res) => {
+exports.Onecommand = async (req, res) => {
   const id = req.params.id;
   try {
   const command = await Command.findOne({

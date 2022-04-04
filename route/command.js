@@ -24,7 +24,7 @@ router
 
  router
     .route('/commandproducts/:id')
-    .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole(['client','admin','livreur']),CommandController.command)  
+    .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole(['client','admin','livreur']),CommandController.Onecommand)  
 
    
          
