@@ -49,7 +49,7 @@ exports.create = async (req, res) => {
   });
 };
 
-/* -------get All commands with ----- */
+/* -------get All commands with info command /client/product/commandproduct/delivery ----- */
 
 
 exports.all = async (req, res) => {
@@ -69,6 +69,7 @@ exports.ById = async (req, res) => {
 };
 
 
+/* -------get ONe command with info command /client/product/commandproduct/delivery ----- */
 
 
 exports.Onecommand = async (req, res) => {
@@ -83,6 +84,8 @@ exports.Onecommand = async (req, res) => {
     res.status(400).json(error);
   }
 };
+
+/* -------update command by client ----- */
 
 
 exports.update = async (req, res) => {
@@ -100,6 +103,7 @@ exports.update = async (req, res) => {
 
 };
 
+/* -------delivery set command ----- */
 
 
 exports.deliveryConfirm = async (req, res) => {
