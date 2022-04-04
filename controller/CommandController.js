@@ -1,5 +1,8 @@
 const { Command, CommandProduct } = require("../model");
 
+
+/* -------create command by client----- */
+
 exports.create = async (req, res) => {
   let data = req.body;
   console.log(data);
@@ -46,8 +49,11 @@ exports.create = async (req, res) => {
   });
 };
 
+/* -------get All commands with ----- */
+
+
 exports.all = async (req, res) => {
-  const command = await Command.findAll({ include:['client','products']});
+  const command = await Command.findAll({ include:['client','products','delivery']});
 
   res.json(command);
 };
@@ -69,7 +75,7 @@ exports.Onecommand = async (req, res) => {
   const id = req.params.id;
   try {
   const command = await Command.findOne({
-    include:['client','products'] ,
+    include:['client','products','delivery'] ,
     where: { id: id },
   });
   res.json(command.toJSON());
