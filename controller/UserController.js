@@ -1,6 +1,7 @@
 const { User } = require("../model");
 
 
+ /* -------find All users with role = delivery ----- */
 
 exports.delivery = async (req, res) => {
   
@@ -13,12 +14,16 @@ exports.delivery = async (req, res) => {
   res.json(users);
 };
 
+/* -------find All users ----- */
+
 exports.all = async (req, res) => {
  
   const users = await User.findAll();
 
   res.json(users);
 };
+
+/* -------create user by admin ----- */
 
 exports.create = async (req, res) => {
   let data = req.body;
@@ -30,6 +35,9 @@ exports.create = async (req, res) => {
   });
   res.json(user);
 };
+
+/* -------update user by admin ----- */
+
 
 exports.update = async (req, res) => {
   let data = req.body;
@@ -49,6 +57,7 @@ exports.update = async (req, res) => {
 
 };
 
+/* -------delete user by admin ----- */
 
 exports.delete = async (req, res) => {
 
@@ -62,6 +71,7 @@ exports.delete = async (req, res) => {
     }
 }
 
+/* -------find one user  ----- */
 
 exports.ById = async (req, res) => {
     try {
@@ -72,6 +82,9 @@ exports.ById = async (req, res) => {
         res.status(400).send(error);
       }
 };
+
+
+/* -------confirm status delivery  by admin ----- */
 
 exports.status_delivery = async (req, res) => {
   const confirmer = await User.update(
