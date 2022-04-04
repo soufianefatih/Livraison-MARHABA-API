@@ -100,7 +100,7 @@ exports.deliveryConfirm = async (req, res) => {
   try {
       const command = await Command.update(
           {
-              'delivery_id': req.params.userid,
+              'delivery_id': req.params.deliveryid,
           },
           {
               where: {

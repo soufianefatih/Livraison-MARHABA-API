@@ -25,7 +25,10 @@ router
  router
     .route('/commandproducts/:id')
     .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole(['client','admin','livreur']),CommandController.Onecommand)  
-
+   
+ router
+    .route('/:id/delivery/:deliveryid')
+    .get(CommandController.deliveryConfirm)
    
          
 module.exports = router;
