@@ -111,11 +111,13 @@ exports.deliveryConfirm = async (req, res) => {
       const command = await Command.update(
           {
               'delivery_id': req.params.deliveryid,
+
           },
           {
               where: {
                   id: req.params.id,
-                  status : 1
+                  // statu:s : '1'
+
               }
           }
       )

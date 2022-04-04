@@ -16,17 +16,16 @@ exports.virifylogin =  function (req, res, next) {
 };
 
 
-// exports.dileveryStatus = function(status){
+exports.dileveryStatus = function(status){
  
-//   return async (req, res, next) => {
-//       delivery_id =  req.user.status ;
-//         if (delivery_id.status == status == 1) {
-//             next();
-//         }else{
-//             res.status('401').json({ message: 'Role is not autohrized' })
-//         }
-//     }
-//   }
+  return async (req, res, next) => {
+        if ( req.user.status  == status) {
+            next();
+        }else{
+            res.status('401').json({ message: 'Status is not confirmed' })
+        }
+    }
+  }
 
   exports.UserRole = function(role){
     return (req, res, next) => {
