@@ -1,6 +1,8 @@
 const { Category,Product } = require("../model");
 const fs = require('fs');
 
+/* -------create category by admin ----- */
+
 
 exports.create = async (req, res) => {
 
@@ -16,6 +18,8 @@ exports.create = async (req, res) => {
     });
     res.json(category);
   };
+
+/* -------update category by admin ----- */
 
 
   exports.update = async (req, res) => {
@@ -33,11 +37,16 @@ exports.create = async (req, res) => {
   
   };
 
+/* -------get all category ----- */
+
   exports.all = async (req, res) => {
     const categorys = await Category.findAll();
   
     res.json(categorys);
   };
+
+/* -------delete category by admin ----- */
+
 
   exports.delete = async (req, res) => {
 
@@ -51,6 +60,10 @@ exports.create = async (req, res) => {
     }
 }
 
+
+/* -------get one category  ----- */
+
+
 exports.ById = async (req, res) => {
   try {
       const category = await Category.findByPk(req.params.id);
@@ -62,6 +75,7 @@ exports.ById = async (req, res) => {
 };
 
 
+/* -------get category with info product ----- */
 
 exports.product = async (req, res) => {
   const id = req.params.id
