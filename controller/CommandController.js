@@ -108,11 +108,11 @@ exports.update = async (req, res) => {
 
 
 exports.deliveryConfirm = async (req, res) => {
-  const user = await User.findOne({
-    where: { status: 1 },
+  const delivery = await User.findOne({
+    where: { id: req.params.deliveryid },
   });
  
-      if (user.status === 1) {
+      if (delivery.status == 1) {
         const command = await Command.update(
           {
               'delivery_id': req.params.deliveryid,
