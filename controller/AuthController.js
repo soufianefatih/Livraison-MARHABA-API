@@ -9,7 +9,7 @@ exports.register = async (req, res) => {
     name: data.name,
     email: data.email,
     password: data.password,
-    status: 0,
+    status: data.status ?? 0,
     role: data.role == "livreur" ? "livreur" : "client",
   });
 

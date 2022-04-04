@@ -15,17 +15,7 @@ exports.virifylogin =  function (req, res, next) {
   });
 };
 
-
-exports.dileveryStatus = function(status){
- 
-  return async (req, res, next) => {
-        if ( req.user.status  == status) {
-            next();
-        }else{
-            res.status('401').json({ message: 'Status is not confirmed' })
-        }
-    }
-  }
+  
 
   exports.UserRole = function(role){
     return (req, res, next) => {
