@@ -16,7 +16,7 @@ const CommandProduct = CommandProductModel(db, Sequelize);
 
 // les relaction
 
-// relation between category//product
+// relation between category//product one to many
 
 Category.hasMany(
   Product,
@@ -30,7 +30,7 @@ Product.belongsTo(
   { as: "category", foreignKey: "category_id" }
 );
 
-// relation between User //  commanede
+// relation between User //  commanede onevto many
 
 User.hasMany(Command, { foreignKey: "client_id" });
 
@@ -40,7 +40,7 @@ User.hasMany(Command, { foreignKey: "delivery_id" });
 
 Command.belongsTo(User, { as: "delivery", foreignKey: "delivery_id" });
 
-// relation between product //  commanede
+// relation between product //  commanede many to many
 
 Product.belongsToMany(Command, {
   through: CommandProduct,
