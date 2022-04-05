@@ -139,3 +139,44 @@ exports.deliveryConfirm = async (req, res) => {
      
 
 }
+
+
+/* -------delivery change status command ----- */
+
+
+exports.changeStatus = async (req, res) => {
+
+ 
+    try{
+      const status = await Command.update(
+        {
+            'status': 1 ,
+
+        },
+        {
+            where: {
+                id: req.params.id,
+
+            }
+        }
+        )
+        console.log(req.params.deliveryid),
+    res.status(200).send({message: 'change successfully ',status});
+    }
+        
+    catch{
+      res.status(400).json('status is not confirm');
+
+    }
+
+      
+
+     
+      
+
+
+    
+     
+
+}
+

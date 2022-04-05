@@ -29,6 +29,13 @@ router
  router
     .route('/:id/delivery/:deliveryid')
     .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('livreur'),CommandController.deliveryConfirm)
+
+
+router
+    .route('/statuschange/:id')
+    .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('livreur'),CommandController.changeStatus )    
+
+
    
          
 module.exports = router;
