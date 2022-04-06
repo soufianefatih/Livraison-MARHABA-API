@@ -23,16 +23,16 @@ router
  
 
  router
-    .route('/commandproducts/:id')
+    .route('/commandproducts/:command_id')
     .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole(['client','admin','livreur']),CommandController.Onecommand)  
    
  router
-    .route('/:id/delivery/:deliveryid')
+    .route('/:command_id/delivery/:deliveryid')
     .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('livreur'),CommandController.deliveryConfirm)
 
 
 router
-    .route('/:id/statuschange/:status')
+    .route('/:command_id/statuschange/:status')
     .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('livreur'),CommandController.changeStatus )    
 
 

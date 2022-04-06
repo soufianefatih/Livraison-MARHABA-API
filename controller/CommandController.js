@@ -74,7 +74,7 @@ exports.ById = async (req, res) => {
 
 
 exports.Onecommand = async (req, res) => {
-  const id = req.params.id;
+  const id = req.params.command_id;
   try {
   const command = await Command.findOne({
     include:['client','products','delivery'] ,
@@ -120,7 +120,7 @@ exports.deliveryConfirm = async (req, res) => {
           },
           {
               where: {
-                  id: req.params.id,
+                  id: req.params.command_id,
 
               }
           }
@@ -155,12 +155,11 @@ exports.changeStatus = async (req, res) => {
         },
         {
             where: {
-                id: req.params.id,
+                id: req.params.command_id,
 
             }
         }
         )
-        console.log(req.params.deliveryid),
     res.status(200).send({message: 'change successfully ',status});
     }
         
