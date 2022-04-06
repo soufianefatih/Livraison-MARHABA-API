@@ -25,6 +25,7 @@ exports.login = async (req, res) => {
     where: { email: req.body.email },
   });
 
+  
   // check email is exit
   if (!user || user.password != req.body.password) {
     res.status(400).json({ message: "user is not found" });
