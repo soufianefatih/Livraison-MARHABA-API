@@ -10,7 +10,6 @@ exports.register = async (req, res) => {
   const newUser = await User.create({
     name: data.name,
     email: data.email,
-    // password: data.password,
     password: bcrypt.hashSync(req.body.password, 8),
     status: data.status ?? 0,
     role: data.role == "livreur" ? "livreur" : "client",

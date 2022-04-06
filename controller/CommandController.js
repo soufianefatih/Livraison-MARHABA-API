@@ -110,7 +110,7 @@ exports.update = async (req, res) => {
 exports.deliveryConfirm = async (req, res) => {
   const delivery = await User.findOne({
     where: { id: req.params.deliveryid },
-  });
+  }); 
       if (delivery.status == 1) {
         const command = await Command.update(
           {
