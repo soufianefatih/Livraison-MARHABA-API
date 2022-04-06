@@ -150,7 +150,7 @@ exports.changeStatus = async (req, res) => {
     try{
       const status = await Command.update(
         {
-            'status': 1 ,
+            'status': req.params.status ,
 
         },
         {

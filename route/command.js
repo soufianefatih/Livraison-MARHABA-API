@@ -32,7 +32,7 @@ router
 
 
 router
-    .route('/statuschange/:id')
+    .route('/:id/statuschange/:status')
     .get(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('livreur'),CommandController.changeStatus )    
 
 
