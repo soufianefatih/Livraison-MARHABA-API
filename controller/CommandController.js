@@ -96,7 +96,9 @@ exports.update = async (req, res) => {
       address: data.address,
       phone: data.phone,    
     },
-    { where: { id: req.params.id } }
+    { where: { id: req.params.id ,
+               status : [0,1]           
+    }}
   );
 
         res.status(200).send({message: 'update successfully ',command});
