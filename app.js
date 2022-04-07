@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express ();
 const bodyParser = require("body-parser");
+const morgan = require('morgan')
 require('./model/index');
 
 
@@ -16,6 +17,12 @@ db
     .catch(err => {
         console.error('Unable to connect to the database:', err);
     });
+
+    // morgan
+    morgan.token('body', (req)=>JSON.stringify(req.body));
+    morgan.token('id', (req)=> req.params.id);
+    app.use(morgan(' :url :method  :body '))
+    app.use(morgan('combined'))
 
   //* the will let us get data the data form post
  app.use(bodyParser.urlencoded({ extended: true }));
