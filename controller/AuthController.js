@@ -77,8 +77,7 @@ exports.login = async (req, res) => {
       );
       if (!Comparepassword) {
         return res.status(401).send({
-          Token: null,
-          message: "Invalid Password!",
+          message: "Password Not Correct!",
         });
       }
       var token = jwt.sign({ id: user.id, name: user.name, email: user.email, role: user.role }, process.env.TOKEN_SECRET, {
@@ -87,7 +86,7 @@ exports.login = async (req, res) => {
 
       return res.status(200).send({
         user,
-        Token: token,
+        token
       });
       
     })
