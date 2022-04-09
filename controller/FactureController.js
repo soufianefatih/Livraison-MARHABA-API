@@ -12,8 +12,6 @@ exports.create = async (req,res)=>{
         name: data.name,
         // commandId: data.commandId
       });
-
-        console.log(facture);
     
     
         let transporter = nodemailer.createTransport({
@@ -43,7 +41,6 @@ exports.create = async (req,res)=>{
         });
     
     
-        console.log('here');
         res.status(200).json({
             message: 'facture created successfully', facture
         })
