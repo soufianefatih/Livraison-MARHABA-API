@@ -6,6 +6,8 @@ const ProductModel = require("./Product");
 const CategoryModel = require("./Category");
 const CommandModel = require("./Command");
 const CommandProductModel = require("./CommandProduct");
+const FactureModel = require("./Facture");
+
 
 // Gen Model in database
 const User = UserModel(db, Sequelize);
@@ -13,6 +15,8 @@ const Product = ProductModel(db, Sequelize);
 const Category = CategoryModel(db, Sequelize);
 const Command = CommandModel(db, Sequelize);
 const CommandProduct = CommandProductModel(db, Sequelize);
+const Facture = FactureModel(db, Sequelize);
+
 
 // les relaction
 
@@ -40,7 +44,7 @@ User.hasMany(Command, { foreignKey: "delivery_id" });
 
 Command.belongsTo(User, { as: "delivery", foreignKey: "delivery_id" });
 
-// relation between product //  commanede many to many
+// relation between product //  commande many to many
 
 Product.belongsToMany(Command, {
   through: CommandProduct,
@@ -53,9 +57,13 @@ Command.belongsToMany(Product, {
   as: "products",
   foreignKey: "command_id",
 });
+// relation between command // facture 1 to 1
+
+Facture.belongsTo(Command);
+Command.hasOne(Facture);
 
 // Create table of model
-db.sync({ force: false }).then(() => {
+db.sync({ force: true }).then(() => {
   console.log("Table Created !");
 });
 
@@ -65,4 +73,5 @@ module.exports = {
   Category,
   Command,
   CommandProduct,
+  Facture,
 };
