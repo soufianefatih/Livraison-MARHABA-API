@@ -63,7 +63,7 @@ Facture.belongsTo(Command);
 Command.hasOne(Facture);
 
 // Create table of model
-db.sync({ force: true }).then(() => {
+db.sync({ force: false }).then(() => {
   console.log("Table Created !");
 });
 
