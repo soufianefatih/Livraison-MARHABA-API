@@ -34,6 +34,8 @@ const userRoutes = require("./route/user");
 const categoryRoutes = require("./route/category");
 const productRoutes = require("./route/product");
 const commandtRoutes = require("./route/command");
+const factureRoutes = require("./route/facture");
+
 
 //* Register Our Routes
   app.use("/api/marhaba/", authRoutes);
@@ -41,6 +43,8 @@ const commandtRoutes = require("./route/command");
   app.use("/api/marhaba/category",categoryRoutes);
   app.use("/api/marhaba/product",productRoutes);
   app.use("/api/marhaba/command",commandtRoutes);
+  app.use("/api/marhaba/facture",factureRoutes);
+
 
 
 

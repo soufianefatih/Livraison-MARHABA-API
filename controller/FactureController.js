@@ -8,7 +8,7 @@ exports.create = async (req,res)=>{
   
     try {
          
-    await Product.create({
+   const facture = await Facture.create({
         name: data.name,
         // commandId: data.commandId
       });
@@ -17,36 +17,35 @@ exports.create = async (req,res)=>{
     
     
         let transporter = nodemailer.createTransport({
-            host: "smtpout.secureserver.net",
+            host: "smtp.ethereal.email",
             secure: false,
             secureConnection: false, // TLS requires secureConnection to be false
             tls: {
             ciphers: "SSLv3",
             },
             requireTLS: true,
-            port: 465,
+            port:  587,
             service: 'outlook',
             debug: true, 
             auth: {
-            user: `your email`, 
-            pass: `you password`, 
+            user: `soufianefth@outlook.fr`, 
+            pass: `ladekhesse95`, 
             },
         });
     
-        let info = await transporter.sendMail({
-            from: '"Dark sider" soufianefth@outlook.fr', 
+         await transporter.sendMail({
+            from: '"livraison Marhaba" <soufianefth@outlook.fr>', 
             to: "soufianefatih43@gmail.com", 
             subject: "facture de l'ordre",
             text: "test", 
             html: `<b>Facture de l'order</b>
-                    // ${user.email}
                     Here is you  Bill`, 
         });
     
     
         console.log('here');
         res.status(200).json({
-            message: 'facture created successfully'
+            message: 'facture created successfully', facture
         })
         
     } catch (error) {
