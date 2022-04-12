@@ -6,7 +6,7 @@ const AuthMiddleware = require('./../middleware/Authmiddleware');
 
 
 router
-    .route('/create')
+    .route('/create/:id')
     .post(AuthMiddleware.virifylogin,AuthMiddleware.UserRole('admin'),FactureController.create) 
     
 

@@ -1,17 +1,26 @@
 const nodemailer = require("nodemailer")
-const { Facture } = require("../model");
+const {Facture, Command } = require("../model");
 
 
 exports.create = async (req,res)=>{
-   
-    let data = req.body;
+    let data = req.body; 
+    const command_id = req.params.id
+    const command = await Command.findOne({where:{id:command_id},
+
+      include:['client','products']
+    
+    })
   
+    console.log("command",command.client_id);
     try {
          
    const facture = await Facture.create({
         name: data.name,
-        // commandId: data.commandId
-      });
+        commandId: data.commandId
+      },
+ 
+    
+      );
     
     
         let transporter = nodemailer.createTransport({
@@ -33,10 +42,13 @@ exports.create = async (req,res)=>{
     
          await transporter.sendMail({
             from: '"livraison Marhaba" <soufianefth@outlook.fr>', 
-            to: "soufianefatih43@gmail.com", 
+            to:  ` ${command.client.email}`, 
             subject: "facture de l'ordre",
             text: "test", 
             html: `<b>Facture de l'order</b>
+                      ${facture.name}
+                      ${command.address}
+                      ${command.phone}
                     Here is you  Bill`, 
         });
     

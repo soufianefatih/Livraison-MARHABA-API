@@ -7,6 +7,8 @@ dotenv.config();
 
 exports.register = async (req, res) => {
   let data = req.body;
+
+  
   const newUser = await User.create({
     name: data.name,
     email: data.email,
