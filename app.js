@@ -8,6 +8,8 @@ require('./model/index');
 app.use(cors())
 //  connection database 
 
+app.use("/upload", express.static("./upload"));
+
 const db = require('./config/database')
 
 db

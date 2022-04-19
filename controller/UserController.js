@@ -31,6 +31,7 @@ exports.create = async (req, res) => {
     name: data.name,
     email: data.email,
     password: data.password,
+    status: data.status,
     role: data.role,
   });
   res.json(user);
