@@ -64,6 +64,7 @@ exports.update = async (req, res) => {
         name: data.name,
         decsription: data.decsription,
         price: data.price,
+        category_id : data.category_id
       
       },
       { where: { id: req.params.id } }
