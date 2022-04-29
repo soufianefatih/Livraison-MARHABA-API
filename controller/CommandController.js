@@ -1,5 +1,4 @@
-const { Command, CommandProduct , User } = require("../model");
-
+const { Command, CommandProduct, User } = require("../model");
 
 /* -------create command by client----- */
 
@@ -10,15 +9,14 @@ exports.create = async (req, res) => {
   const command = await Command.create({
     address: data.address,
     phone: data.phone,
-    total:total,
+    total: total,
     status: 0,
     client_id: req.user.id ?? 1,
-     
   });
+
 
   data.command_products.forEach(async (product) => {
     try {
-  
       await CommandProduct.create({
         quantity: product.qty,
         price: product.price,
@@ -27,18 +25,18 @@ exports.create = async (req, res) => {
         product_id: product.id,
       });
 
-      total +=  product.qty * product.price
+      total += product.qty * product.price;
 
-            await Command.update(
+      await Command.update(
         {
-            'total': total,
+          total: total,
         },
         {
-            where: {
-                id: command.id
-            }
+          where: {
+            id: command.id,
+          },
         }
-    )
+      );
     } catch (error) {
       console.log("error : ", error);
     }
@@ -51,9 +49,10 @@ exports.create = async (req, res) => {
 
 /* -------get All commands with info command /client/product/commandproduct/delivery ----- */
 
-
 exports.all = async (req, res) => {
-  const command = await Command.findAll({ include:['client','products','delivery']});
+  const command = await Command.findAll({
+    include: ["client", "products", "delivery"],
+  });
 
   res.json(command);
 };
@@ -68,18 +67,16 @@ exports.ById = async (req, res) => {
   }
 };
 
-
 /* -------get ONe command with info command /client/product/commandproduct/delivery ----- */
-
 
 exports.Onecommand = async (req, res) => {
   const id = req.params.command_id;
   try {
-  const command = await Command.findOne({
-    include:['client','products','delivery'] ,
-    where: { id: id },
-  });
-  res.json(command.toJSON());
+    const command = await Command.findOne({
+      include: ["client", "products", "delivery"],
+      where: { id: id },
+    });
+    res.json(command.toJSON());
   } catch (error) {
     res.status(400).json(error);
   }
@@ -87,88 +84,61 @@ exports.Onecommand = async (req, res) => {
 
 /* -------update command by client ----- */
 
-
 exports.update = async (req, res) => {
   let data = req.body;
   const command = await Command.update(
     {
       address: data.address,
-      phone: data.phone,    
+      phone: data.phone,
     },
-    { where: { id: req.params.id ,
-               status : [0,1]           
-    }}
+    { where: { id: req.params.id, status: [0, 1] } }
   );
 
-        res.status(200).send({message: 'update successfully ',command});
-
-
+  res.status(200).send({ message: "update successfully ", command });
 };
 
 /* -------delivery set command ----- */
 
-
 exports.deliveryConfirm = async (req, res) => {
   const delivery = await User.findOne({
     where: { id: req.params.deliveryid },
-  }); 
-      if (delivery.status == 1) {
-        const command = await Command.update(
-          {
-              'delivery_id': req.params.deliveryid,
-              'status' : 1,
-
-          },
-          {
-              where: {
-                  id: req.params.command_id,
-                  delivery_id : null
-              }
-          }
-          )
-          console.log(req.params.deliveryid),
-      res.status(200).send({message: 'confirm successfully ',command});
-
-      } else{
-
-     
-        res.status(400).json('status is not confirm');
-      
-
-
+  });
+  if (delivery.status == 1) {
+    const command = await Command.update(
+      {
+        delivery_id: req.params.deliveryid,
+        status: 1,
+      },
+      {
+        where: {
+          id: req.params.command_id,
+          delivery_id: null,
+        },
       }
-     
-
-}
-
+    );
+    console.log(req.params.deliveryid),
+      res.status(200).send({ message: "confirm successfully ", command });
+  } else {
+    res.status(400).json("status is not confirm");
+  }
+};
 
 /* -------delivery change status command ----- */
 
-
 exports.changeStatus = async (req, res) => {
-
- 
-    try{
-      const status = await Command.update(
-        {
-            'status': req.params.status ,
-
+  try {
+    const status = await Command.update(
+      {
+        status: req.params.status,
+      },
+      {
+        where: {
+          id: req.params.command_id,
         },
-        {
-            where: {
-                id: req.params.command_id,
-                
-
-            }
-        }
-        )
-    res.status(200).send({message: 'change successfully ',status});
-    }
-        
-    catch{
-      res.status(400).json('status is not confirm');
-
-    }
-
-}
-
+      }
+    );
+    res.status(200).send({ message: "change successfully ", status });
+  } catch {
+    res.status(400).json("status is not confirm");
+  }
+};
