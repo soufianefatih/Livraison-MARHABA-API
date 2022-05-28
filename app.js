@@ -27,7 +27,7 @@ db
     app.use(morgan(' :url :method  :body '))
     app.use(morgan('combined'))
 
-  //* the will let us get data the data form post
+ //* the will let us get data the data form post
  app.use(bodyParser.urlencoded({ extended: true }));
  app.use(bodyParser.json());
 
